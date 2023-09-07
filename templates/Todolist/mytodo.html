@@ -1,0 +1,35 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+</head>
+<body>
+            </ul>
+    <ul class="navbar-nav">
+    <li class="nav-item">
+    {% if user.is_authenticated %}
+    {% if userworks %}
+    <ul>
+    {% for todo in userworks %}
+        <li><a href="/Todolist/{{ todo.id }}/">글쓴이:{{ todo.author.username }} 제목:{{ todo.subject }}</a></li>
+    {% endfor %}
+    </ul>
+
+
+    {% else %}
+    <p>Todolist가 없습니다.</p>
+    {% endif %}
+    {% else %}
+    {% endif %}
+    </li>
+    </ul>
+</body>
+</html>

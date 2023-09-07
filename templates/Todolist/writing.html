@@ -2,16 +2,22 @@
 <!doctype html>
 <html lang="ko">
 <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-    <!-- pybo CSS -->
+
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    <title>Hello, pybo!</title>
 </head>
 <body>
-<ul>안녕!</ul>
+<div>
+    <h2>todolist를 작성하시오</h2>
+    <form method="post">
+         {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">저장하기</button>
+    </form>
+</div>
 </body>
 </html>

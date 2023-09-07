@@ -2,17 +2,35 @@
 <!doctype html>
 <html lang="ko">
 <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-    <!-- pybo CSS -->
+
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    <title>Hello, pybo!</title>
 </head>
 <body>
+<div>
+    {% if messages %}
+    <div class="alert alert-danger my-3" role="alert">
+    {% for message in messages %}
+        <strong>{{ message.tags }}</strong>
+        <ul><li>{{ message.message }}</li></ul>
+    {% endfor %}
+    </div>
+    {% endif %}
+</div>
 <ul>목표:{{ to_do.subject }}</ul>
 <ul>상세내용:{{ to_do.content }}</ul>
+
+<div>
+    {% if request.user == to_do.author %}
+        <a href="{% url 'Todolist:modify' to_do.id  %}"
+           class="btn btn-sm btn-outline-secondary">수정</a>
+         <a href="{% url 'Todolist:delete' to_do.id %}"
+            class="btn btn-sm btn-outline-secondary">삭제</a>
+    {% endif %}
+</div>
 </body>
 </html>
